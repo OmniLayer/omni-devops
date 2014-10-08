@@ -11,7 +11,7 @@ git checkout $BRANCH
 mkdir -p ~/.omni
 mkdir -p ~/.bitcoin
 
-cp /vagrant/xmc_bitcoin.conf ~/.bitcoin/bitcoin.conf
+cp /vagrant/bitcoin.conf ~/.bitcoin/bitcoin.conf
 cp /vagrant/sql.conf ~/.omni
 
 
