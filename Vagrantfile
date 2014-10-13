@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 60, 'Ebs.DeleteOnTermination' => false }]
 
-    override.vm.box = "mitchellh-dummy-aws"
+    override.vm.box = "omni-aws"
     override.ssh.username = "ubuntu"
     override.ssh.private_key_path = ENV['AWS_SSH_KEY_PATH'] || ""
   end
@@ -70,9 +70,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
 #
+# omniwallet
+#
+# Configuration for Ubuntu VM with Omniwallet
+#
+# Production is m1.small (do we need that instance storage or should we use a t2 or m3 instance?)
+#
+  
+
+#
 # omniengine
 #
 # Configuration for Ubuntu VM with OmniEngine
+#
+# Production is t2.micro
 #
   config.vm.define "omniengine" do |omni|
 
@@ -106,6 +117,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 # mastercore
 #
 # Configuration for Mastercore development
+#
+# Production is m3.medium
 #
   config.vm.define "mastercore", autostart: false do |mastercore|
 

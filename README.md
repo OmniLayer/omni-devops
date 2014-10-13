@@ -33,6 +33,18 @@ You should consider them untrusted binaries. Only use them with TEST-MSC and sma
         $ git clone git@github.com:mastercoin-MSC/omni-devops.git
         $ cd omni-devops
 
+## Installing support for AWS
+
+The instructions for setting up the various servers include the `--provider=aws` option which require that Vagrant have support for AWS installed and a AWS base box named "omni-aws" created. (It is possible to use Vagrant with VirtualBox, in which case you can skip this section and ommit the `--provider=aws` argument) 
+
+1. Install the Vagrant AWS plugins
+
+        $ vagrant plugin install vagrant-aws
+        $ vagrant plugin install vagrant-awsinfo
+
+1. Create the Omni AWS Vagrant Base Box
+
+        $ ./make-omni-aws-vagrant-box.sh
 
 ## Master Core RPC Server Setup
 
@@ -70,7 +82,8 @@ To create your own PostgreSQL instance using Amazon RDS, follow these steps:
 
 1. Copy the environment setup template file.
 
-        $ cp setup-omni-template.sh setup-omni-private.sh 
+        $ cp setup-omni-template.sh setup-omni-private.sh
+        $ chmod 700 setup-omni-private.sh
 
 1. Edit `setup-omni-private.sh` and make sure to set (at least) the following variables: `AWS_ACCESS_KEY`, `AWS_SECRET_KEY`, `AWS_CREDENTIAL_FILE`, `PGUSER`, `PGPASSWORD`, `OMNI_DB_INSTANCE`, `OMNI_DB_SEC_GID`
 
