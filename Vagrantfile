@@ -94,21 +94,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.cpus = 2
       end
 
-      omni.vm.provision "shell", id: "sh-omniengine-root" do |s|
-        s.path = "install-omniengine-root.sh"
-        s.args = [ "vagrant", "vagrant" ]   # user, group for /var/lib/omniwallet
-      end 
-
-      omni.vm.provider :aws do |aws, override|
-        override.vm.provision "shell", id: "sh-omniengine-root" do |s|
-          s.args = [ "ubuntu", "ubuntu" ]   # user, group for /var/lib/omniwallet
-        end
+      omni.vm.provision "shell" do |s|
+        s.privileged = false
+        s.path = "install-omniengine-user.sh"
       end
-
-       omni.vm.provision "shell" do |s|
-         s.privileged = false
-         s.path = "install-omniengine-user.sh"
-       end
 
   end
 
