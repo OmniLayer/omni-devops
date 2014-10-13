@@ -87,17 +87,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #
   config.vm.define "omniengine" do |omni|
 
-      omni.vm.synced_folder "omniengine-synced", "/vagrant", id: "vagrant-synced", disabled: false
+    omni.vm.synced_folder "omniengine-synced", "/vagrant", id: "vagrant-synced", disabled: false
 
-      omni.vm.provider "virtualbox" do |v|
-        v.memory = 1024
-        v.cpus = 2
-      end
 
-      omni.vm.provision "shell" do |s|
+    omni.vm.provision "shell" do |s|
         s.privileged = false
         s.path = "install-omniengine-user.sh"
-      end
+    end
+
+    omni.vm.provider "virtualbox" do |v|
+        v.memory = 1024
+        v.cpus = 2
+    end
+
+    omni.vm.provider "aws" do |aws|
+      aws.tags = {
+        'Name' => 'omniengine',
+        'Type' => 'vagrant-omniengine'
+      }
+    end
 
   end
 
@@ -128,6 +136,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mastercore.vm.provider "virtualbox" do |v|
         v.memory = 2048
         v.cpus = 8
+    end
+
+    mastercore.vm.provider "aws" do |aws|
+      aws.tags = {
+        'Name' => 'mastercore',
+        'Type' => 'vagrant-mastercore'
+      }
     end
 
   end
