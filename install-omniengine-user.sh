@@ -6,7 +6,9 @@ BRANCH="msgilligan-vagrant"
 REPODIR="omniEngine"
 
 # Install RPMs, python packages, etc.
-cd /vagrant ; ./install-prerequisites.sh
+cd /vagrant
+./install-prerequisites.sh
+cd 
 
 # Clone and checkout using passed (usually from Vagrant) parameters
 git clone --no-checkout $REPOURL $REPODIR
