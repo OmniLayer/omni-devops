@@ -8,6 +8,9 @@ export AWS_SSH_KEY_PATH="/path/to/file.pem"
 export AWS_DEFAULT_REGION="us-west-2"
 export AWS_CREDENTIAL_FILE="/path/to/credentials.txt"
 
+# RDS command line tools use EC2_REGION
+export EC2_REGION=$AWS_DEFAULT_REGION
+
 # Standard PostgreSQL Settings
 export PGUSER="user"
 export PGPASSWORD="pass"
