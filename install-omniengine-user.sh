@@ -1,8 +1,8 @@
 #!/bin/sh
 #REPOURL="https://github.com/mastercoin-MSC/omniEngine.git"
 #BRANCH="master"
-REPOURL="https://github.com/msgilligan/omniEngine.git"
-BRANCH="msgilligan-vagrant"
+REPOURL="https://github.com/mastercoin-MSC/omniEngine.git"
+BRANCH="master"
 REPODIR="omniEngine"
 
 # Install RPMs, python packages, etc.
