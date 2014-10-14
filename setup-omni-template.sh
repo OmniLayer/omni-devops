@@ -20,6 +20,11 @@ export PGPORT=5432
 export OMNI_DB_INSTANCE="instance-name"
 export OMNI_DB_SEC_GID="groupid"
 
+# Bitcoind/Mastercored settings
+export BTCRPC_CONNECT="127.0.0.1"
+export BTCRPC_USER="bitcoinrpcuser"
+export BTCRPC_PASSWORD="pass"
+export BTCRPC_SSL=1
 
 
 
