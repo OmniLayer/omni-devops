@@ -14,6 +14,7 @@ export EC2_REGION=$AWS_DEFAULT_REGION
 # Standard PostgreSQL Settings
 export PGUSER="user"
 export PGPASSWORD="pass"
+export PGHOST="xxx.rds.amazonaws.com"
 export PGPORT=5432
 
 # Omni Settings
