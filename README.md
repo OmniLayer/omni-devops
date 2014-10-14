@@ -44,7 +44,8 @@ The instructions for setting up the various servers include the `--provider=aws`
 
 1. Create the Omni AWS Vagrant Base Box
 
-        $ ./make-omni-aws-vagrant-box.sh
+        $ cd omni-devops
+        $ vagrant box add omni-aws tools/omni-aws.box
 
 ## Master Core RPC Server Setup
 
