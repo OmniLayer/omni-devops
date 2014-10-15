@@ -18,6 +18,15 @@ Although it is possible to deploy all four servers in a single virtual (or physi
 
 Vagrant is available for Mac OS X, Windows, and  Linux. In addition to VirtualBox, Vagrant may be used to provision VMWare, AWS and other virtual environments.
 
+## Recommended/Optional tools
+
+* [Bash](http://www.gnu.org/software/bash/) command-line shell
+* [PostgreSQL](http://www.postgresql.org/download/) command line client tools
+* [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [Groovy language](http://beta.groovy-lang.org/download.html)
+* Amazon [EC2 CLI Tools](http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-cli-get-set-up.html)
+* Amazon [RDS Command Line Tools](http://docs.aws.amazon.com/AmazonRDS/latest/CommandLineReference/StartCLI.html)
+
 ### Base Box
 
 The [Vagrantfile](Vagrantfile) is currently using (*trusting*) the [ubuntu/trusty64](https://vagrantcloud.com/ubuntu/trusty64) base box created by Ubuntu and the Mastercoin base box [msgilligan/mastercoin-ubuntu-base](https://vagrantcloud.com/msgilligan/mastercoin-ubuntu-base).
