@@ -1,15 +1,15 @@
 # Omniwallet, OmniEngine, and Master Core Devops
  
-Deployment and management scripts for the new OmniEngine-based Omniwallet.
+Deployment and management scripts for the new Master Core-based Omniwallet.
 
-Omniwallet consists of 4 main components/servers:
+Omniwallet consists of 4 main components/servers. The *Vagrantfile* in this repository contains VM configurations for 3 of these components. We are currently focused on using [Amazon RDS](http://aws.amazon.com/rds/postgresql/) for the PostgreSQL server component, but PostgreSQL could be run from a Vagrant VM or any PostgreSQL server host.
 
-1. Master Core RPC Server
-1. PostgreSQL Database Server
-1. OmniEngine Server
-1. Omniwallet Server
+1. Master Core RPC Server: `mastercore` VM
+1. PostgreSQL Database Server: PostgreSQL or Amazon RDS
+1. OmniEngine Server: `omniengine` VM
+1. Omniwallet Server: `omniwallet` VM (forthcoming)
 
-Although it is possible to deploy all four servers in a single virtual (or physical) machine, it is recommended to use four seprate VMs and these scripts are currently designed to build and deploy 4 separate VMs.
+Although it should be possible to deploy all four servers in a single virtual (or physical) machine, it is recommended to use four seprate VMs and these scripts are currently designed to build and deploy 4 separate VMs.
 
 ## Prerequisites
 
@@ -58,11 +58,13 @@ The instructions for setting up the various servers include the `--provider=aws`
 
 ## Master Core RPC Server Setup
 
+VM name `mastercore`
+
 1. Create and boot a VM with Vagrant and install Master Core
 
         $ vagrant up mastercore --provider=aws
 
-1. Connect to the VirtualBox VM
+1. Connect to the `mastercore` VM
 
         $ vagrant ssh mastercore
 
@@ -82,7 +84,7 @@ The Master Core daemon is now running as an Ubuntu service and will be automatic
 
 ## PostgreSQL Database Server Setup
 
-Althought [PostgreSQL](http://www.postgresql.org) may be run in a general purpose VM, development at the Mastercoin Foundation has been focused upon using the [RDS database service](http://aws.amazon.com/rds/postgresql/) provided by Amazon.
+Although [PostgreSQL](http://www.postgresql.org) may be run in a general purpose VM, development at the Mastercoin Foundation has been focused upon using the [RDS database service](http://aws.amazon.com/rds/postgresql/) provided by Amazon.
 
 To create your own PostgreSQL instance using Amazon RDS, follow these steps:
 
@@ -108,18 +110,35 @@ To create your own PostgreSQL instance using Amazon RDS, follow these steps:
 
 ## OmniEngine Server Setup
 
+VM name `omniengine`
+
 1. Edit `omniengine-synced/bitcoin.conf` and `omniengine-synced/sql.conf` to contain the correct host, username, and password values for the DB and Master Core RPC servers.
 
 1. Create and boot a VM with Vagrant and install and run OmniEngine
 
-        $ vagrant up omniengine --provider=aws
+        $ vagrant up omniengine [--provider=aws]
 
 ## Omniwallet Server Setup
 
+VM name `omniwallet`
+
 To be written.
 
+## Troubleshooting Tips
 
+1. Make sure that Vagrant (and VirtualBox) are installed correctly. You can use the `empty` VM provided in the *Vagrantfile* to quickly test that Vagrant is working correctly. The empty VM does not contain any Master Core or Omni services but offers a quick test that Vagrant and the supporting "provider" are working and configured correctly.
 
+        $ vagrant up empty [--provider=aws]
 
+1. If you're running Vagrant from Microsoft Windows make sure that the text files you checked out with Git have UNIX line seperators not MS-DOS/Winodws CRLF line seperators. If you get an error message which complains about `\r` characters, check your Git configuration.
+
+1. If you're using Virtualbox on Windows and your Windows host is becoming unresponsive, you can try uncommenting the following line in `Vagrantfile`:
+
+        v.customize ["modifyvm", :id, "--cpuexecutioncap", "50"] #limit the use of cpu to 50%
+
+1. You can also reduce the number of CPUs used for a particular Virtualbox VM which may also help to reduce load on your host system. The configuration lines in `Vagrantfile` that you are interested in look like this:
+
+        v.cpus = 2
+        
 
 
