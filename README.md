@@ -7,7 +7,7 @@ Omniwallet consists of 4 main components/servers. The *Vagrantfile* in this repo
 1. Master Core RPC Server: `mastercore` VM
 1. PostgreSQL Database Server: PostgreSQL or Amazon RDS
 1. OmniEngine Server: `omniengine` VM
-1. Omniwallet Server: `omniwallet` VM (forthcoming)
+1. Omniwallet Server: `omniwallet` VM (in progress, be prepared to help debug)
 
 Although it should be possible to deploy all four servers in a single virtual (or physical) machine, it is recommended to use four seprate VMs and these scripts are currently designed to build and deploy 4 separate VMs.
 
@@ -122,7 +122,18 @@ VM name `omniengine`
 
 VM name `omniwallet`
 
-To be written.
+NOTE: THE OMNIWALLET INSTALL IS STILL UNDER DEVELOPMENT AND IS NOT WORKING YET. WE'RE KEEPING IT ON THE MASTER BRANCH BECAUSE IT DOESN'T AFFECT THE OTHER VMs AND WE WANT TO KEEP GIT SIMPLE FOR NOW. STAY TUNED.
+
+FEEDBACK AND/OR PULL REQUESTS WELCOME.
+
+1. Pre-configuraion. To be done.
+
+1. Create and boot a VM with Vagrant and install and run OmniEngine
+
+        $ vagrant up omniwallet [--provider=aws]
+
+1. Post-configuration. To be done.
+
 
 ## Troubleshooting Tips
 

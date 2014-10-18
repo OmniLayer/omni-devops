@@ -76,6 +76,43 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #
 # Production is m1.small (do we need that instance storage or should we use a t2 or m3 instance?)
 #
+  config.vm.define "omniwallet" do |omni|
+
+    omni.vm.network :forwarded_port, host_ip: "127.0.0.1", guest: 80, host: 1666
+    omni.vm.synced_folder "omniwallet-synced", "/vagrant", id: "vagrant-synced", disabled: false
+
+
+    omni.vm.provision "shell", id: "sh-omni-root" do |s|
+      s.path = "install-omniwallet-root.sh"
+      s.args = [ "vagrant", "vagrant"]                # user, group for /var/lib/omniwallet
+    end 
+
+    omni.vm.provider :aws do |aws, override|
+      override.vm.provision "shell", id: "sh-omni-root" do |s|
+        s.args = [ "ubuntu", "ubuntu"]                # user, group for /var/lib/omniwallet
+      end
+    end
+
+    omni.vm.provision "shell" do |s|
+      s.privileged = false
+      s.path = "install-omniwallet-user.sh"
+      s.args = ["https://github.com/mastercoin-MSC/omniwallet.git", # Git Repo to clone/checkout from
+                                  "master"]           # Branch to check out
+    end
+
+    omni.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
+
+    omni.vm.provider "aws" do |aws|
+      aws.tags = {
+        'Name' => 'omniwallet',
+        'Type' => 'vagrant-omniwallet'
+      }
+    end
+
+  end
   
 
 #
@@ -113,7 +150,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #
 # mastercore
 #
-# Configuration for Mastercore development
+# Configuration for Master Core deployment
+#
+# Master Core is currently built from source code.
 #
 # Production is m3.medium
 #
@@ -130,7 +169,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mastercore.vm.provision "shell" do |s|
         s.privileged = false
         s.path = "clone-build-install-bitcoind.sh"
-        s.args = ["https://github.com/msgilligan/mastercore.git", "msgilligan-msc-upstart", "mastercore"]
+        s.args = ["https://github.com/msgilligan/mastercore.git", # Git Repo to clone/checkout from
+                                  "msgilligan-msc-upstart",       # Branch to check out
+                                  "mastercore"]                   # Directory to clone into
     end
 
     mastercore.vm.provider "virtualbox" do |v|
