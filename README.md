@@ -141,7 +141,7 @@ FEEDBACK AND/OR PULL REQUESTS WELCOME.
 
         $ vagrant up empty [--provider=aws]
 
-1. If you're running Vagrant from Microsoft Windows make sure that the text files you checked out with Git have UNIX line seperators not MS-DOS/Winodws CRLF line seperators. If you get an error message which complains about `\r` characters, check your Git configuration.
+1. If you're running Vagrant from Microsoft Windows make sure that the text files you checked out with Git have UNIX line seperators not MS-DOS/Winodws CRLF line seperators. If you get an error message which complains about `\r` characters, check your Git configuration. The [`.gitattributes`](https://github.com/mastercoin-MSC/omni-devops/blob/master/.gitattributes) file in this repository is now configured to ensure that even on Windows, text files have lines separated by LF, not CRLF.
 
 1. If you're using Virtualbox on Windows and your Windows host is becoming unresponsive, you can try uncommenting the following line in `Vagrantfile`:
 
