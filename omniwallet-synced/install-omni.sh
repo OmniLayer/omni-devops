@@ -201,7 +201,7 @@ sudo chown -R $NAME:$NAME ~/tmp
 
 #install packages:
 sudo apt-get -y install python-simplejson python-git python-pip libffi-dev
-sudo apt-get -y install build-essential autoconf libtool libboost-all-dev pkg-config libcurl4-openssl-dev libleveldb-dev libzmq-dev libconfig++-dev libncurses5-dev
+sudo apt-get -y install build-essential autoconf libtool libboost-all-dev pkg-config libcurl4-openssl-dev libleveldb-dev libzmq-dev libconfig++-dev libncurses5-dev libpq-dev
 
 #sx install is run earlier
 
@@ -222,7 +222,7 @@ sudo apt-get -y install uwsgi uwsgi-plugin-python
 sudo apt-get -y install nginx
 #exit
 
-sed -i "s/cmlacy/$NAME/g" ~/omniwallet/etc/nginx/sites-available/default
+sed -i "s/myUser/$NAME/g" ~/omniwallet/etc/nginx/sites-available/default
 
 #Update nginx conf with omniwallet specifics
 sudo cp ~/omniwallet/etc/nginx/sites-available/default /etc/nginx/sites-available
