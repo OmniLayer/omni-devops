@@ -112,7 +112,7 @@ To create your own PostgreSQL instance using Amazon RDS, follow these steps:
 
 VM name `omniengine`
 
-1. Edit `omniengine-synced/bitcoin.conf` and `omniengine-synced/sql.conf` to contain the correct host, username, and password values for the DB and Master Core RPC servers.
+1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contins the correct host, username, and password values for the PostgreSQL and Master Core RPC servers.
 
 1. Create and boot a VM with Vagrant and install and run OmniEngine
 

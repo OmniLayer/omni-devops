@@ -7,6 +7,18 @@ VAGRANTFILE_API_VERSION = "2"
 # Specify minimum Vagrant version
 Vagrant.require_version ">= 1.6.2"
 
+LOCAL_CONFIG_RB="#{File.dirname(__FILE__)}/LocalVagrantConfig.rb";
+DEFAULT_CONFIG_RB="#{File.dirname(__FILE__)}/DefaultVagrantConfig.rb";
+if File.exist?(LOCAL_CONFIG_RB)
+#  puts "Loading local config from #{LOCAL_CONFIG_RB}"
+  require LOCAL_CONFIG_RB
+else
+#  puts "Loading default config from #{DEFAULT_CONFIG_RB}"
+  require DEFAULT_CONFIG_RB
+end
+
+#puts "Amazon region is: #{AWS_DEFAULT_REGION}"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
@@ -26,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     aws.secret_access_key = ENV['AWS_SECRET_KEY'] || ""
     aws.keypair_name = ENV['AWS_KEYPAIR_NAME'] || ""
 
-    aws.region = "us-west-2"
+    aws.region = AWS_DEFAULT_REGION
     aws.instance_type = "m3.medium"
     aws.security_groups =  [ 'web' ]
 
@@ -99,8 +111,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     omni.vm.provision "shell" do |s|
       s.privileged = false
       s.path = "install-omniwallet-user.sh"
-      s.args = ["https://github.com/mastercoin-MSC/omniwallet.git", # Git Repo to clone/checkout from
-                                  "master"]           # Branch to check out
+      s.args = [OMNIWALLET_GIT_REPO,            # Git Repo to clone/checkout from
+                OMNIWALLET_GIT_BRANCH]          # Branch to check out
     end
 
     omni.vm.provider "virtualbox" do |v|
@@ -133,6 +145,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     omni.vm.provision "shell" do |s|
         s.privileged = false
         s.path = "install-omniengine-user.sh"
+        s.args = [OMNIENGINE_GIT_REPO,    # Repo to clone
+                  OMNIENGINE_GIT_BRANCH,  # Branch to checkout 
+                  BTCRPC_CONNECT,     # Bitcoin RPC Host
+                  BTCRPC_USER,        # Bitcoin RPC username
+                  BTCRPC_PASSWORD,    # Bitcoin RPC password
+                  BTCRPC_SSL,         # Use SSL for RPC
+                  PGHOST,             # Postgres host
+                  PGUSER,             # Postgres username
+                  PGPASSWORD,         # Postgres password
+                  PGPORT]             # Postgres port
     end
 
     omni.vm.provider "virtualbox" do |v|
@@ -172,9 +194,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mastercore.vm.provision "shell" do |s|
         s.privileged = false
         s.path = "clone-build-install-bitcoind.sh"
-        s.args = ["https://github.com/msgilligan/mastercore.git", # Git Repo to clone/checkout from
-                                  "msgilligan-msc-upstart",       # Branch to check out
-                                  "mastercore"]                   # Directory to clone into
+        s.args = [MASTERCORE_GIT_REPO,                # Git Repo to clone/checkout from
+                  MASTERCORE_GIT_BRANCH,              # Branch to check out
+                  "mastercore"]                       # Directory to clone into
     end
 
     mastercore.vm.provider "virtualbox" do |v|
