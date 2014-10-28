@@ -44,7 +44,7 @@ You should consider them untrusted binaries. Only use them with TEST-MSC and sma
 
 ## Installing support for AWS
 
-The instructions for setting up the various servers include the `--provider=aws` option which require that Vagrant have support for AWS installed and a AWS base box named "omni-aws" created. (It is possible to use Vagrant with VirtualBox, in which case you can skip this section and ommit the `--provider=aws` argument) 
+The instructions for setting up the various servers show the `--provider=aws` option enclosed in square brackets `[` `]` which indicates that it is an optional option. If used, the `--provider=aws` option requires that Vagrant have support for AWS installed and a AWS base box named "omni-aws" created. (If the option is not specified, Vagrant will use VirtualBox on your local system, in which case you can skip this section.) 
 
 1. Install the Vagrant AWS plugins
 
@@ -62,7 +62,7 @@ VM name `mastercore`
 
 1. Create and boot a VM with Vagrant and install Master Core
 
-        $ vagrant up mastercore --provider=aws
+        $ vagrant up mastercore [--provider=aws]
 
 1. Connect to the `mastercore` VM
 
