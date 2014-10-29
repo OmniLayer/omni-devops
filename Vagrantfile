@@ -20,7 +20,7 @@ end
 #puts "Amazon region is: #{AWS_DEFAULT_REGION}"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
+  config.vm.boot_timeout = 720
   # Every Vagrant virtual environment requires a box to build off of.
   # Version 0.2.0 is Ubuntu 14.04 LTS built from "ubuntu/trusty64"
   config.vm.box = "msgilligan/mastercoin-ubuntu-base"
