@@ -10,7 +10,7 @@
 
 # Standard AWS Settings
 AWS_ACCESS_KEY="setme"
-AWS_SECRET_KEY="setme+RAV1RbE547oVnUfEjt9RI"
+AWS_SECRET_KEY="setme"
 AWS_KEYPAIR_NAME="setme"
 AWS_SSH_KEY_PATH="/path/to/key.pem"
 AWS_DEFAULT_REGION="us-west-2"
