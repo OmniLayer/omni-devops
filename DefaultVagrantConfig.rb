@@ -11,25 +11,25 @@
 #
 # Default region for creating EC2 VMs, etc.
 #
-AWS_DEFAULT_REGION = "us-west-2"
+AWS_DEFAULT_REGION="us-west-2"
 
 #
 # Configure Git Repository and Branch for Omniwallet
 #
-OMNIWALLET_GIT_REPO = "https://github.com/mastercoin-MSC/omniwallet.git"
-OMNIWALLET_GIT_BRANCH = "master"
+OMNIWALLET_GIT_REPO="https://github.com/mastercoin-MSC/omniwallet.git"
+OMNIWALLET_GIT_BRANCH="master"
 
 #
 # Configure Git Repository and Branch for OmniEngine
 #
-OMNIENGINE_GIT_REPO = "https://github.com/mastercoin-MSC/omniEngine.git"
-OMNIENGINE_GIT_BRANCH = "master"
+OMNIENGINE_GIT_REPO="https://github.com/mastercoin-MSC/omniEngine.git"
+OMNIENGINE_GIT_BRANCH="master"
 
 #
 # Configure Git Repository and Branch for Master Core build from source
 #
-MASTERCORE_GIT_REPO = "https://github.com/msgilligan/mastercore.git"
-MASTERCORE_GIT_BRANCH = "msgilligan-msc-upstart"
+MASTERCORE_GIT_REPO="https://github.com/msgilligan/mastercore.git"
+MASTERCORE_GIT_BRANCH="msgilligan-msc-upstart"
 
 # Standard PostgreSQL Settings
 PGUSER="setme"
