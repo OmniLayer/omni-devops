@@ -37,6 +37,10 @@ PGPASSWORD="setme"
 PGHOST="setme"
 PGPORT="5432"
 
+# Passwords for 'omniengine' and 'omniwww' database users
+OMNIDB_ENGINE_PASSWORD="setme"
+OMNIDB_WWW_PASSWORD="setme"
+
 # Bitcoind/Mastercored settings
 BTCRPC_CONNECT="setme"
 BTCRPC_USER="setme"
