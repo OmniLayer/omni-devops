@@ -152,7 +152,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                   BTCRPC_PASSWORD,    # Bitcoin RPC password
                   BTCRPC_SSL,         # Use SSL for RPC
                   PGHOST,             # Postgres host
-                  'omniengine',       # Postgres username
+                  OMNIDB_ENGINE_USER,     # Postgres username
                   OMNIDB_ENGINE_PASSWORD, # Postgres password
                   PGPORT]             # Postgres port
     end

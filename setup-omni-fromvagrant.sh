@@ -13,6 +13,10 @@ export PGPASSWORD
 export PGHOST
 export PGPORT
 
+export OMNIDB_ENGINE_USER
+export OMNIDB_ENGINE_PASSWORD
+export OMNIDB_WWW_USER
+export OMNIDB_WWW_PASSWORD
 
 # Bitcoind/Mastercored settings
 export BTCRPC_CONNECT
