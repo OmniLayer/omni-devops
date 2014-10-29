@@ -3,8 +3,15 @@
 # Ruby script that is also valid BASh
 source LocalVagrantConfig.rb
 
-# RDS command line tools use EC2_REGION
+# Standard AWS Settings
+export AWS_ACCESS_KEY
+export AWS_SECRET_KEY
+export AWS_KEYPAIR_NAME
+export AWS_SSH_KEY_PATH
 export AWS_DEFAULT_REGION
+export AWS_CREDENTIAL_FILE
+
+# RDS command line tools use EC2_REGION
 export EC2_REGION=$AWS_DEFAULT_REGION
 
 # Standard PostgreSQL Settings

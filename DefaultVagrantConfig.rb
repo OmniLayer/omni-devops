@@ -8,10 +8,13 @@
 # To Override settings copy to LocalVagrantConfig.rb and modify variables as needed
 #
 
-#
-# Default region for creating EC2 VMs, etc.
-#
+# Standard AWS Settings
+AWS_ACCESS_KEY="setme"
+AWS_SECRET_KEY="setme+RAV1RbE547oVnUfEjt9RI"
+AWS_KEYPAIR_NAME="setme"
+AWS_SSH_KEY_PATH="/path/to/key.pem"
 AWS_DEFAULT_REGION="us-west-2"
+AWS_CREDENTIAL_FILE="/path/to/rds-credentials.txt"
 
 #
 # Configure Git Repository and Branch for Omniwallet
