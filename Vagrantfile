@@ -112,7 +112,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       s.privileged = false
       s.path = "install-omniwallet-user.sh"
       s.args = [OMNIWALLET_GIT_REPO,            # Git Repo to clone/checkout from
-                OMNIWALLET_GIT_BRANCH]          # Branch to check out
+                OMNIENGINE_GIT_BRANCH,  # Branch to checkout 
+                BTCRPC_CONNECT,     # Bitcoin RPC Host
+                BTCRPC_USER,        # Bitcoin RPC username
+                BTCRPC_PASSWORD,    # Bitcoin RPC password
+                BTCRPC_SSL,         # Use SSL for RPC
+                PGHOST,             # Postgres host
+                OMNIDB_WWW_USER,     # Postgres username
+                OMNIDB_WWW_PASSWORD, # Postgres password
+                PGPORT]             # Postgres port
     end
 
     omni.vm.provider "virtualbox" do |v|
