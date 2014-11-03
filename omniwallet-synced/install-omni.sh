@@ -237,10 +237,10 @@ sudo -u $NAME sudo npm install bower -g
 sudo -u $NAME grunt
 
 
-echo "extracting bootstrap... this may take up to 10 minutes on some systems"
+#echo "extracting bootstrap... this may take up to 10 minutes on some systems"
 #Create omniwallet data directory and bootstrap
 cd /vagrant/res
-7z x mtools-snapshot.7z -o/var/lib/omniwallet/ -y > /dev/null
+#7z x mtools-snapshot.7z -o/var/lib/omniwallet/ -y > /dev/null
 sudo chown -R $NAME:$NAME /var/lib/omniwallet
 
 #start the web interface

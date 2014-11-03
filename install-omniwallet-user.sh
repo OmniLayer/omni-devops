@@ -22,8 +22,6 @@ bash install-omni.sh
 mkdir -p ~/.omni
 mkdir -p ~/.bitcoin
 
-echo PGPORT is ${PGPORT}
-
 sed -e "s#^\(rpcuser=\)\(.*\)#\1${BTCRPC_USER}#" \
     -e "s#^\(rpcpassword=\)\(.*\)#\1${BTCRPC_PASSWORD}#" \
     -e "s#^\(rpcconnect=\)\(.*\)#\1${BTCRPC_CONNECT}#" \
