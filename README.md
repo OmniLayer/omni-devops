@@ -122,17 +122,36 @@ VM name `omniengine`
 
 VM name `omniwallet`
 
-NOTE: THE OMNIWALLET INSTALL IS STILL UNDER DEVELOPMENT AND IS NOT WORKING YET. WE'RE KEEPING IT ON THE MASTER BRANCH BECAUSE IT DOESN'T AFFECT THE OTHER VMs AND WE WANT TO KEEP GIT SIMPLE FOR NOW. STAY TUNED.
+NOTE: THE OMNIWALLET VM INSTALL IS PRE-ALPHA. It is now working, BUT HAS HAD MINIMAL TESTING. Please give it a try.
 
 FEEDBACK AND/OR PULL REQUESTS WELCOME.
 
-1. Pre-configuraion. To be done.
+1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contins the correct host, username, and password values for the PostgreSQL and Master Core RPC servers.
 
-1. Create and boot a VM with Vagrant and install and run OmniEngine
+1. Create and boot a VM with Vagrant and install and Omniwallet
 
         $ vagrant up omniwallet [--provider=aws]
 
-1. Post-configuration. To be done.
+1. Connect to the `omniwallet` VM
+
+        $ vagrant ssh omniwallet
+
+1. Make sure `nginx` is running:
+
+        $ sudo service nginx status
+
+1. Set an environment variable containing a secret passphrase. It is used to generate salts for individual user IDs, and it needs to be both secret AND not change.
+
+        export OMNIWALLET_SECRET="DontTellAnyoneThis"
+
+1. Configure an email server for sending account information.
+
+1. Launch the wrapper (do *NOT* use `sudo`)
+
+        $ cd omniwallet
+        $ ./app.sh
+
+1. Use your browser to go to the correct port on the newly installed VM. You should see Omniwallet running there.
 
 
 ## Troubleshooting Tips
