@@ -5,7 +5,7 @@ echo "Running install-sx..."
 cd /vagrant/res
 bash install-sx.sh
 
-mkdir /var/lib/omniwallet
+mkdir -p /var/lib/omniwallet
 chown -R $MSC_USER:$MSC_GROUP /var/lib/omniwallet
 
 
