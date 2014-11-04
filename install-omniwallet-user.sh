@@ -13,7 +13,6 @@ PGUSER=$8
 PGPASSWORD=$9
 PGPORT=${10}
 cd /vagrant
-echo "tcp://obelisk.bysh.me:9091" > $HOME/.sx.cfg
 # Add $REPO $BRANCH arguments after we strip out all the interactive stuff for handling/prompting
 # for SX server config
 #bash install-omni.sh -os $REPO $BRANCH
