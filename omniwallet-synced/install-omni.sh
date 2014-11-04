@@ -1,6 +1,7 @@
 #!/bin/bash
 #Tested on Ubuntu 14.04 LTS
 #set -e
+set -e -x
 REPOURL=$1
 BRANCH=$2
 

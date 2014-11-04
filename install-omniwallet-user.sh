@@ -1,6 +1,6 @@
 #!/bin/bash
 # Vagrant install script run as vagrant user (usually 'vagrant' or 'ubuntu') -- not sudo
-set -x
+set -e -x
 echo "Running 'vagrant' user portion of install..."
 REPOURL=$1
 BRANCH=$2
