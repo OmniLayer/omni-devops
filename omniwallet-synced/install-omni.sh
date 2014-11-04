@@ -109,7 +109,7 @@ cd $HOME
 
 # May need to clean up some strange permissions from the npm install.
 sudo chown -R $NAME:$NAME ~/.npm
-sudo chown -R $NAME:$NAME ~/tmp
+#sudo chown -R $NAME:$NAME ~/tmp
 
 #install packages:
 sudo apt-get -y install python-simplejson python-git python-pip libffi-dev
