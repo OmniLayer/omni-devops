@@ -112,7 +112,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       s.privileged = false
       s.path = "install-omniwallet-user.sh"
       s.args = [OMNIWALLET_GIT_REPO,            # Git Repo to clone/checkout from
-                OMNIENGINE_GIT_BRANCH,  # Branch to checkout 
+                OMNIWALLET_GIT_BRANCH,  # Branch to checkout
                 BTCRPC_CONNECT,     # Bitcoin RPC Host
                 BTCRPC_USER,        # Bitcoin RPC username
                 BTCRPC_PASSWORD,    # Bitcoin RPC password
