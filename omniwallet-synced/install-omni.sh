@@ -152,6 +152,7 @@ sudo chown -R $NAME:$NAME /var/lib/omniwallet
 sudo nginx -s stop
 sudo nginx
 
+set +x
 echo ""
 echo "Installation complete"
 echo "Omniwallet should have been downloaded/installed in "$PWD
