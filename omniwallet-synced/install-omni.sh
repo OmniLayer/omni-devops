@@ -145,7 +145,7 @@ sudo -u $NAME sudo npm install bower -g
 sudo -u $NAME grunt
 
 #Create omniwallet data directory 
-cd /vagrant/res
+sudo mkdir -p /var/lib/omniwallet
 sudo chown -R $NAME:$NAME /var/lib/omniwallet
 
 #start the web interface
