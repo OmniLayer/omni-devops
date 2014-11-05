@@ -130,6 +130,7 @@ sudo apt-get -y install uwsgi uwsgi-plugin-python
 sudo apt-get -y install nginx
 
 sed -i "s/myUser/$NAME/g" ~/omniwallet/etc/nginx/sites-available/default
+sed -i "s/\/var\/lib\/omniwallet\/www\/values.json/\/home\/$NAME\/omniwallet\/var\/lib\/omniwallet\/www\/values.json/g" ~/omniwallet/etc/nginx/sites-available/default
 
 #Update nginx conf with omniwallet specifics
 sudo cp ~/omniwallet/etc/nginx/sites-available/default /etc/nginx/sites-available
