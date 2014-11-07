@@ -149,7 +149,8 @@ FEEDBACK AND/OR PULL REQUESTS WELCOME.
 1. Launch the wrapper (do *NOT* use `sudo`)
 
         $ cd omniwallet
-        $ ./app.sh
+        $ mkdir -p logs
+        $ ./app.sh &> logs/appsh.log &
 
 1. Use your browser to go to the correct port on the newly installed VM. You should see Omniwallet running there.
 
