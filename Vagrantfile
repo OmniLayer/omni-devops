@@ -91,18 +91,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     omni.vm.network :forwarded_port, host_ip: "127.0.0.1", guest: 80, host: 1666
     omni.vm.synced_folder "omniwallet-synced", "/vagrant", id: "vagrant-synced", disabled: false
 
-
-    omni.vm.provision "shell", id: "sh-omni-root" do |s|
-      s.path = "install-omniwallet-root.sh"
-      s.args = [ "vagrant", "vagrant"]                # user, group for /var/lib/omniwallet
-    end 
-
-    omni.vm.provider :aws do |aws, override|
-      override.vm.provision "shell", id: "sh-omni-root" do |s|
-        s.args = [ "ubuntu", "ubuntu"]                # user, group for /var/lib/omniwallet
-      end
-    end
-
     omni.vm.provision "shell" do |s|
       s.privileged = false
       s.path = "install-omniwallet-user.sh"
