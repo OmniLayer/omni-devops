@@ -137,6 +137,8 @@ FEEDBACK AND/OR PULL REQUESTS WELCOME.
 
 ## Troubleshooting Tips
 
+### Vagrant/VirtualBox
+
 1. Make sure that Vagrant (and VirtualBox) are installed correctly. You can use the `empty` VM provided in the *Vagrantfile* to quickly test that Vagrant is working correctly. The empty VM does not contain any Master Core or Omni services but offers a quick test that Vagrant and the supporting "provider" are working and configured correctly.
 
         $ vagrant up empty [--provider=aws]
@@ -150,6 +152,12 @@ FEEDBACK AND/OR PULL REQUESTS WELCOME.
 1. You can also reduce the number of CPUs used for a particular Virtualbox VM which may also help to reduce load on your host system. The configuration lines in `Vagrantfile` that you are interested in look like this:
 
         v.cpus = 2
+
+1. If you're on Windows 8.1, don't use the `vagrant suspend` command because of this [VirtualBox bug](https://www.virtualbox.org/ticket/13583). (There's also a [Vagrant Issue](https://github.com/mitchellh/vagrant/issues/4276) with more specific information and some workarounds.)
         
+### Master Core VM
+
+1. Make sure you didn't skip the step to assign an RPC username and password.
+
 
 
