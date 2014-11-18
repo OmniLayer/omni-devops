@@ -42,12 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     aws.instance_type = "m3.medium"
     aws.security_groups =  [ 'web' ]
 
-# ubuntu/images/ebs/ubuntu-trusty-14.04-amd64-server-20140607.1 - ami-f34032c3
-# ebs, paravirtualization, 64-bit
-# uswest-2
-#    aws.ami = "ami-f34032c3" # uswest-2
-#    aws.ami = "ami-a26265e7" # uswest-1
-    aws.ami = "ami-d34032e3"    # uswest-2, amd64, type="hvm:ebs"
+    aws.ami = "ami-39501209"    # uswest-2, amd64, type="hvm:ebs", Release: 20140927
 
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 60, 'Ebs.DeleteOnTermination' => false }]
 
@@ -96,23 +91,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     omni.vm.network :forwarded_port, host_ip: "127.0.0.1", guest: 80, host: 1666
     omni.vm.synced_folder "omniwallet-synced", "/vagrant", id: "vagrant-synced", disabled: false
 
-
-    omni.vm.provision "shell", id: "sh-omni-root" do |s|
-      s.path = "install-omniwallet-root.sh"
-      s.args = [ "vagrant", "vagrant"]                # user, group for /var/lib/omniwallet
-    end 
-
-    omni.vm.provider :aws do |aws, override|
-      override.vm.provision "shell", id: "sh-omni-root" do |s|
-        s.args = [ "ubuntu", "ubuntu"]                # user, group for /var/lib/omniwallet
-      end
-    end
-
     omni.vm.provision "shell" do |s|
       s.privileged = false
       s.path = "install-omniwallet-user.sh"
       s.args = [OMNIWALLET_GIT_REPO,            # Git Repo to clone/checkout from
-                OMNIENGINE_GIT_BRANCH,  # Branch to checkout 
+                OMNIWALLET_GIT_BRANCH,  # Branch to checkout
                 BTCRPC_CONNECT,     # Bitcoin RPC Host
                 BTCRPC_USER,        # Bitcoin RPC username
                 BTCRPC_PASSWORD,    # Bitcoin RPC password

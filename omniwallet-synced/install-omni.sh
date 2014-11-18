@@ -1,104 +1,13 @@
 #!/bin/bash
-#Outside Requirements: Existing Obelisk Server
-#Instructions are for Ubuntu 13.04 and newer
-
+#Tested on Ubuntu 14.04 LTS
 #set -e
-echo
-echo "Omni wallet Installation Script"
-echo
-if [ "$#" = "2" ]; then
-    if [[ "$1" = "-os" ]]; then
-        #Absolute path
-        SERVER=$2
-        PREFIG=CLE
-    else
-    	HELP=1
-    fi
-fi
-
-if [ "$1" = "--help" ] || [ $HELP ]; then
-     echo " [+] Install script help:"
-     echo " --> To execute this script type:"
-     echo " <sudo bash install-omni.sh>"
-     echo " --> To execute this script and install with a specific obelisk server"
-     echo " <bash install-omni.sh -os server-details:port>"
-     echo " This script will install Omniwallet, SX and the required prerequisites"
-     echo " The SX install script will install libbitcoin, libwallet, obelisk and sx tools."
-     echo " The standard path for the installation is /usr/local/"
-     echo " The stardard path for the conf files is /etc."
-     echo
-     exit
-fi
-
-if [ `id -u` != "0" ]; then  #no need to be root
-    SRC=$PWD
-else
-    echo
-    echo "[+] ERROR: This script must be run as root." 1>&2
-    echo
-    echo "<sudo bash install-omni.sh>"
-    echo
-    exit
-fi
+set -e -x
+REPOURL=$1
+BRANCH=$2
 
 #Set some Variables
 NAME=`logname`
 PIPFILELOC="/home/$NAME/omniwallet"
-
-while [ -z "$PREFIG" ]; do
-	echo "Need an obelisk server? Try https://wiki.unsystem.net/index.php/Libbitcoin/Servers"
-	echo ""
-	echo "Do you have an obelisk server and wish to enter its details now? [y/n]"
-	PREFIG='y'
-done
-
-case $PREFIG in
-	y* | Y* )
-		ACTIVE=1
-		CONFIRM=no
-	;;
-
-	CLE)
-		ACTIVE=1
-		CONFIRM=P
-	;;
-
-	*)
-		ACTIVE=0
-	;;
-esac
-
-while [ $ACTIVE -ne 0 ]; do
-	case $CONFIRM in
-
-	y* | Y* )
-		echo "Writing Details to ~/.sx.cfg"
-		echo "You can update/change this file as needed later"
-		echo "service = \""$SERVER"\"" > ~/.sx.cfg
-		ACTIVE=0
-	;;
-
-	n* | N* )
-		SERVER=
-		while [ -z "$SERVER" ]; do
-			echo "Enter Obelisk server connection details ex: tcp://162.243.29.201:9091"
-			echo "If you don't have one yet enter anything, you can update/change this later"
-			SERVER='y'
-		done
-		CONFIRM=P
-	;;
-
-	P)
-		echo "You entered: "$SERVER
-		echo "Is this correct? [y/n]"
-		CONFIRM='y'
-	;;
-
-	*)
-		CONFIRM=no
-	;;
-	esac
-done
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	SSHGEN=
@@ -193,11 +102,14 @@ sudo npm install -g jshint
 #Get/clone Omniwallet - might be relevant
 echo "cloning omniwallet into $HOME"
 cd $HOME
-git clone https://github.com/mastercoin-MSC/omniwallet.git
+git clone --no-checkout $REPOURL omniwallet
+cd omniwallet
+git checkout $BRANCH
+cd $HOME
 
 # May need to clean up some strange permissions from the npm install.
 sudo chown -R $NAME:$NAME ~/.npm
-sudo chown -R $NAME:$NAME ~/tmp
+#sudo chown -R $NAME:$NAME ~/tmp
 
 #install packages:
 sudo apt-get -y install python-simplejson python-git python-pip libffi-dev
@@ -215,14 +127,10 @@ sudo pip install requests
 
 #Get and setup nginx
 sudo apt-get -y install uwsgi uwsgi-plugin-python
-#sudo -s
-#nginx=stable # use nginx=development for latest development version
-#add-apt-repository -y ppa:nginx/$nginx
-
 sudo apt-get -y install nginx
-#exit
 
 sed -i "s/myUser/$NAME/g" ~/omniwallet/etc/nginx/sites-available/default
+sed -i "s/\/var\/lib\/omniwallet\/www\/values.json/\/home\/$NAME\/omniwallet\/var\/lib\/omniwallet\/www\/values.json/g" ~/omniwallet/etc/nginx/sites-available/default
 
 #Update nginx conf with omniwallet specifics
 sudo cp ~/omniwallet/etc/nginx/sites-available/default /etc/nginx/sites-available
@@ -237,26 +145,25 @@ sudo -u $NAME sudo npm install bower -g
 sudo -u $NAME grunt
 
 #Create omniwallet data directory 
-cd /vagrant/res
+sudo mkdir -p /var/lib/omniwallet
 sudo chown -R $NAME:$NAME /var/lib/omniwallet
 
 #start the web interface
 sudo nginx -s stop
 sudo nginx
-#create the mastercoin tools data directory
-#mkdir -p /var/lib/mastercoin-tools
-#tar xzf $SRC/res/bootstrap.tgz -C /var/lib/mastercoin-tools
 
+set +x
 echo ""
 echo "Installation complete"
 echo "Omniwallet should have been downloaded/installed in "$PWD
-echo "Omniwallet will be accessible at localhost:1666 after running ./app.sh in ~/omniwallet/"
+echo "Omniwallet will be accessible at port 80 after running ./app.sh in ~/omniwallet/"
+echo "(If you're using Vagrant/Virtualbox port 80 in this VM is typically mapped to localhost:1666)"
 echo ""
 echo ""
 echo "The webinterface is handled by nginx"
 echo "'sudo service nginx [stop/start/restart/status]'"
 echo ""
-echo "There is a wrapper app.sh which automates the tasks of downloading and parsing Mastercoin Data off the Blockchain"
+echo "There is a wrapper app.sh which runs Omniwallet."
 echo ""
 echo ""
 echo "----------------Run Commands------------------"

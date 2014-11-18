@@ -1,6 +1,6 @@
 #!/bin/bash
 # Vagrant install script run as vagrant user (usually 'vagrant' or 'ubuntu') -- not sudo
-set -x
+set -e -x
 echo "Running 'vagrant' user portion of install..."
 REPOURL=$1
 BRANCH=$2
@@ -12,12 +12,9 @@ PGHOST=$7
 PGUSER=$8
 PGPASSWORD=$9
 PGPORT=${10}
+
 cd /vagrant
-echo "tcp://obelisk.bysh.me:9091" > $HOME/.sx.cfg
-# Add $REPO $BRANCH arguments after we strip out all the interactive stuff for handling/prompting
-# for SX server config
-#bash install-omni.sh -os $REPO $BRANCH
-bash install-omni.sh
+bash install-omni.sh $REPOURL $BRANCH
 
 mkdir -p ~/.omni
 mkdir -p ~/.bitcoin
