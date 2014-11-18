@@ -30,9 +30,11 @@ OMNIENGINE_GIT_BRANCH="master"
 
 #
 # Configure Git Repository and Branch for Master Core build from source
+# omnicore-master is the latest (most) stable branch of Master Core with
+# necessary devops additions -- currently based on mscore-0.0.8 branch.
 #
 MASTERCORE_GIT_REPO="https://github.com/msgilligan/mastercore.git"
-MASTERCORE_GIT_BRANCH="msgilligan-msc-upstart"
+MASTERCORE_GIT_BRANCH="omnicore-master"
 
 # Standard PostgreSQL Settings
 PGUSER="setme"
