@@ -9,6 +9,7 @@ BTCRPC_PASSWORD=$6
 BTCRPC_SSL=$7
 BTCRPC_ALLOWIP=$8
 USERNAME=`whoami`
+BTCDIR="/var/lib/bitcoind"
 
 # Clone and checkout using passed (usually from Vagrant) parameters
 git clone --no-checkout $REPOURL $REPODIR
@@ -30,15 +31,15 @@ sudo usermod -a -G bitcoin $USERNAME
 
 if [ $BTCRPC_SSL == "1" ] ; then
     echo "Creating self-signed SSL certificate..."
-    cd /var/lib/bitcoind
-    sudo openssl genrsa -out server.pem 2048
-    sudo openssl req -new -x509 -nodes -sha1 -days 3650 -key server.pem -batch -config /vagrant/openssl.cnf -out server.cert
+#    cd /var/lib/bitcoind
+    sudo openssl genrsa -out "${BTCDIR}/server.pem" 2048
+    sudo openssl req -new -x509 -nodes -sha1 -days 3650 -key "${BTCDIR}/server.pem" -batch -config /vagrant/openssl.cnf -out "${BTCDIR}/server.cert"
 fi
 
-sed -e "s#^.\(rpcuser=\)\(.*\)#\1${BTCRPC_USER}#" \
+sudo sed -i.bak -e "s#^.\(rpcuser=\)\(.*\)#\1${BTCRPC_USER}#" \
     -e "s#^.\(rpcpassword=\)\(.*\)#\1${BTCRPC_PASSWORD}#" \
     -e "s#^.\(rpcssl=\)\(.*\)#\1${BTCRPC_SSL}#" \
     -e "s#^.\(rpcallowip=\)\(.*\)#\1${BTCRPC_ALLOWIP}#" \
-    /etc/bitcoin/bitcoin-msc-template.conf >  /etc/bitcoin/bitcoin.conf
+    /etc/bitcoin/bitcoin.conf
 
 sudo service mastercored start
