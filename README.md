@@ -60,25 +60,13 @@ The instructions for setting up the various servers show the `--provider=aws` op
 
 VM name `mastercore`
 
+1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contains the correct values for Master Core RPC setup.
+
+1. Make sure `mastercore-synced/openssl.cnf` has the values you want for your self-signed SSL certificate.
+
 1. Create and boot a VM with Vagrant and install Master Core
 
         $ vagrant up mastercore [--provider=aws]
-
-1. Connect to the `mastercore` VM
-
-        $ vagrant ssh mastercore
-
-1. Open the `bitcoin.conf` with an editor, e.g.
-
-        $ vi /etc/bitcoin/bitcoin.conf
-
-1. Make sure the following configuration options in `bitcoin.conf` are set correctly: `rpcuser`, `rpcpassword`, `rpcallowip`, `rpcssl`.
-
-1. Start the Master Core daemon:
-
-         $ sudo service mastercored start
-
-1. Record the `rpcuser`, `rpcpassword` values as well as the IP address of the server for use in OmniEngine configuration.
 
 The Master Core daemon is now running as an Ubuntu service and will be automatically restarted upon system reboots as well as if the daemon crashes.
 
@@ -112,7 +100,7 @@ To create your own PostgreSQL instance using Amazon RDS, follow these steps:
 
 VM name `omniengine`
 
-1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contins the correct host, username, and password values for the PostgreSQL and Master Core RPC servers.
+1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contains the correct host, username, and password values for the PostgreSQL and Master Core RPC servers.
 
 1. Create and boot a VM with Vagrant and install and run OmniEngine
 
