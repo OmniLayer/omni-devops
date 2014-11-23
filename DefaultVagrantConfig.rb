@@ -42,6 +42,10 @@ PGPASSWORD="setme"
 PGHOST="setme"
 PGPORT="5432"
 
+# Amazon RDS DB Settings
+OMNI_DB_INSTANCE="instance-id-goes-here"
+OMNI_DB_SEC_GID="security group id to assign your RDS instance goes here"
+
 # Username/Password for 'omniengine' and 'omniwww' database users
 OMNIDB_ENGINE_USER="omniengine"
 OMNIDB_ENGINE_PASSWORD="setme"

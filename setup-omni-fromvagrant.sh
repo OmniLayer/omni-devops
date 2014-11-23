@@ -20,6 +20,11 @@ export PGPASSWORD
 export PGHOST
 export PGPORT
 
+# Amazon RDS DB Settings
+export OMNI_DB_INSTANCE
+export OMNI_DB_SEC_GID
+
+# APP-LEVEL PGSQL user/passwords
 export OMNIDB_ENGINE_USER
 export OMNIDB_ENGINE_PASSWORD
 export OMNIDB_WWW_USER
