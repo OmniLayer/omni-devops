@@ -7,6 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 # Specify minimum Vagrant version
 Vagrant.require_version ">= 1.6.2"
 
+# Load external configuration from LocalVagrantConfig.rb (if present)
+# else load it from DefaultVagrantConfig.rb
 LOCAL_CONFIG_RB="#{File.dirname(__FILE__)}/LocalVagrantConfig.rb";
 DEFAULT_CONFIG_RB="#{File.dirname(__FILE__)}/DefaultVagrantConfig.rb";
 if File.exist?(LOCAL_CONFIG_RB)
@@ -16,8 +18,6 @@ else
 #  puts "Loading default config from #{DEFAULT_CONFIG_RB}"
   require DEFAULT_CONFIG_RB
 end
-
-#puts "Amazon region is: #{AWS_DEFAULT_REGION}"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.boot_timeout = 720
