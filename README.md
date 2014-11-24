@@ -60,7 +60,7 @@ The instructions for setting up the various servers show the `--provider=aws` op
 
 VM name `mastercore`
 
-1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contains the correct values for Master Core RPC setup.
+1. Copy `DefaultVagrantConfig.rb` to `LocalVagrantConfig.rb` and make sure `LocalVagrantConfig.rb` contains the correct values for Master Core RPC setup. For the `mastercore` VM you'll need to set the AWS variables (starting with `AWS_`, except `AWS_CREDENTIAL_FILE`), the `OMNIENGINE_GIT_REPO` and `OMNIENGINE_GIT_BRANCH` setting to specify where to fetch the source to build from, and the `BTCRPC_` variables (except `BTCRPC_CONNECT` which isn't needed to create the `mastercore` VM, but to access it). 
 
 1. Make sure `mastercore-synced/openssl.cnf` has the values you want for your self-signed SSL certificate.
 
@@ -69,6 +69,8 @@ VM name `mastercore`
         $ vagrant up mastercore [--provider=aws]
 
 The Master Core daemon is now running as an Ubuntu service and will be automatically restarted upon system reboots as well as if the daemon crashes.
+
+1. If you have not done so already set the `BTCRPC_CONNECT` variable in `LocalVagrantConfig.rb` to the hostname or IP address of the `mastercore` VM that you just created.
 
 ## PostgreSQL Database Server Setup
 
