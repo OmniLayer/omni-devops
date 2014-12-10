@@ -1,0 +1,113 @@
+= Jenkins Continuous Integration Server
+:numbered:
+
+The Mastercoin/Omni project is running a Jenkins continuous integration server at http://ci.mastercoin.info[ci.mastercoin.info].
+
+These are the current (as of Dec 9th, 2014) jobs with explanations.
+
+== Master Core
+
+=== Build Jobs
+
+[options="header",frame="all"]
+|===
+| Job Name | Github Repo | Branch | Test Jobs Triggered | Notes
+
+| http://ci.mastercoin.info/job/omnicore-stable/[omnicore-stable]
+| https://github.com/mastercoin-MSC/mastercore/[mastercoin-MSC/mastercore]
+| mscore-0.0.8
+| `msc-mainnet-consensus`, `msc-integ-regtest`
+a| Tip of Git branch for latest "stable" Omni Core
+
+* Builds `mastercored`
+* Runs included C++ Boost unit tests.
+
+| http://ci.mastercoin.info/job/omnicore-stable/[omnicore-integration]
+| https://github.com/mastercoin-MSC/mastercore/[mastercoin-MSC/mastercore]
+| mscore-0.0.9
+| `msc-mainnet-consensus`, `msc-integ-regtest`
+a| Tip of development/integration/unstable Omni Core branch
+
+* Builds `mastercored`
+* Runs included C++ Boost unit tests.
+
+|===
+
+=== Integration Test Jobs
+
+[options="header",frame="all"]
+|===
+| Job Name | Github Repo | Branch | Parameters | Notes
+
+| http://ci.mastercoin.info/job/msc-integ-regtest[msc-integ-regtest]
+| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| master
+a|
+
+* `JOBNAME_TO_TEST`: Job that built the `mastercored` under test (`omnicore-stable` or `omnicore-integration`)
+a| Runs integration tests of JSON-RPC commands against `mastercored` running in https://bitcoin.org/en/developer-examples#regtest-mode[RegTest Mode]
+
+* Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-integ-regtest.sh[test-msc-integ-regtest.sh]
+* Gradle task: `regTest`
+* This job also builds http://ci.mastercoin.info/job/msc-integ-regtest/javadoc/[bitcoin-spock API documentation]
+
+| http://ci.mastercoin.info/job/msc-mainnet-consensus[msc-mainnet-consensus]
+| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| master
+a|
+
+* `JOBNAME_TO_TEST`: Job that built the `mastercored` under test (`omnicore-stable` or `omnicore-integration`)
+a| Runs consensus tests using JSON-RPC commands against `mastercored` running on *Main Net*.
+
+* Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-consensus-mainnet.sh[test-msc-consensus-mainnet.sh]
+* Gradle task: `consensusTest`
+
+|===
+
+== Bitcoin Core Build and Integration RegTest 
+
+We are building and testing Bitcoin Core for the following reasons:
+
+. So we can compare test results between Omni Core and Bitcoin Core
+. To test our tests against Bitcoin Core
+. To allow us to prepare a subset of our tests for submitting upstream.
+
+=== Build Job
+
+[options="header",frame="all"]
+|===
+| Job Name | Github Repo | Branch | Test Jobs Triggered | Notes
+
+| http://ci.mastercoin.info/job/bitcoin-core/[bitcoin-core]
+| https://github.com/bitcoin/bitcoin/[bitcoin/bitcoin]
+| 0.9.3
+| `btc-integ-regtest`
+a| 
+
+* Builds latest shipping version of `bitcoind`
+* Runs included C++ Boost unit tests.
+
+|===
+
+=== Integration Test Job
+
+[options="header",frame="all"]
+|===
+| Job Name | Github Repo | Branch | Parameters | Notes
+
+| http://ci.mastercoin.info/job/btc-integ-regtest[btc-integ-regtest]
+| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| master
+|
+a|
+
+. Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-btc-integ-regtest.sh[test-btc-integ-regtest.sh]
+. Gradle task: `regTestBTC`
+
+|===
+
+== OmniEngine Database Schema Test Jobs
+
+Documentation TBD.
+
+
