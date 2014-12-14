@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     aws.keypair_name = ENV['AWS_KEYPAIR_NAME'] || ""
 
     aws.region = AWS_DEFAULT_REGION
-    aws.instance_type = "m3.medium"
+    aws.instance_type = "t2.small"
     aws.security_groups =  [ 'web' ]
 
     aws.ami = "ami-39501209"    # uswest-2, amd64, type="hvm:ebs", Release: 20140927
@@ -85,6 +85,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 # Configuration for Ubuntu VM with Omniwallet
 #
 # Production is m1.small (do we need that instance storage or should we use a t2 or m3 instance?)
+# Currently testing with t2.small
 #
   config.vm.define "omniwallet" do |omni|
 
@@ -154,6 +155,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     omni.vm.provider "aws" do |aws|
+      aws.instance_type = "t2.micro"
       aws.tags = {
         'Name' => 'omniengine',
         'Type' => 'vagrant-omniengine'
@@ -170,7 +172,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #
 # Master Core is currently built from source code.
 #
-# Production is m3.medium
+# Omni Production is m3.medium
+# Currently testing with t2.small
 #
   config.vm.define "mastercore", autostart: false do |mastercore|
 
