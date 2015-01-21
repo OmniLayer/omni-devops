@@ -1,11 +1,11 @@
 = Jenkins Continuous Integration Server
 :numbered:
 
-The Mastercoin/Omni project is running a Jenkins continuous integration server at http://ci.mastercoin.info[ci.mastercoin.info].
+The Omni Foundation is running a Jenkins continuous integration server at http://ci.omni.foundation[ci.omni.foundation].
 
-These are the current (as of Dec 9th, 2014) jobs with explanations.
+These are the current (as of Jan 20th, 2015) jobs with explanations.
 
-== Master Core
+== Omni Core (Master Core)
 
 === Build Jobs
 
@@ -13,7 +13,7 @@ These are the current (as of Dec 9th, 2014) jobs with explanations.
 |===
 | Job Name | Github Repo | Branch | Test Jobs Triggered | Notes
 
-| http://ci.mastercoin.info/job/omnicore-stable/[omnicore-stable]
+| http://ci.omni.foundation/job/omnicore-stable/[omnicore-stable]
 | https://github.com/mastercoin-MSC/mastercore/[mastercoin-MSC/mastercore]
 | mscore-0.0.8
 | `msc-mainnet-consensus`, `msc-integ-regtest`
@@ -22,7 +22,7 @@ a| Tip of Git branch for latest "stable" Omni Core
 * Builds `mastercored`
 * Runs included C++ Boost unit tests.
 
-| http://ci.mastercoin.info/job/omnicore-stable/[omnicore-integration]
+| http://ci.omni.foundation/job/omnicore-stable/[omnicore-integration]
 | https://github.com/mastercoin-MSC/mastercore/[mastercoin-MSC/mastercore]
 | mscore-0.0.9
 | `msc-mainnet-consensus`, `msc-integ-regtest`
@@ -39,7 +39,7 @@ a| Tip of development/integration/unstable Omni Core branch
 |===
 | Job Name | Github Repo | Branch | Parameters | Notes
 
-| http://ci.mastercoin.info/job/msc-integ-regtest[msc-integ-regtest]
+| http://ci.omni.foundation/job/msc-integ-regtest[msc-integ-regtest]
 | https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
 | master
 a|
@@ -49,9 +49,9 @@ a| Runs integration tests of JSON-RPC commands against `mastercored` running in 
 
 * Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-integ-regtest.sh[test-msc-integ-regtest.sh]
 * Gradle task: `regTest`
-* This job also builds http://ci.mastercoin.info/job/msc-integ-regtest/javadoc/[bitcoin-spock API documentation]
+* This job also builds http://ci.omni.foundation/job/msc-integ-regtest/javadoc/[bitcoin-spock API documentation]
 
-| http://ci.mastercoin.info/job/msc-mainnet-consensus[msc-mainnet-consensus]
+| http://ci.omni.foundation/job/msc-mainnet-consensus[msc-mainnet-consensus]
 | https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
 | master
 a|
@@ -78,7 +78,7 @@ We are building and testing Bitcoin Core for the following reasons:
 |===
 | Job Name | Github Repo | Branch | Test Jobs Triggered | Notes
 
-| http://ci.mastercoin.info/job/bitcoin-core/[bitcoin-core]
+| http://ci.omni.foundation/job/bitcoin-core/[bitcoin-core]
 | https://github.com/bitcoin/bitcoin/[bitcoin/bitcoin]
 | 0.9.3
 | `btc-integ-regtest`
@@ -95,7 +95,7 @@ a|
 |===
 | Job Name | Github Repo | Branch | Parameters | Notes
 
-| http://ci.mastercoin.info/job/btc-integ-regtest[btc-integ-regtest]
+| http://ci.omni.foundation/job/btc-integ-regtest[btc-integ-regtest]
 | https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
 | master
 |
