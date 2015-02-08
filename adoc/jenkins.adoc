@@ -31,6 +31,16 @@ a| Tip of development/integration/unstable Omni Core branch
 * Builds `mastercored`
 * Runs included C++ Boost unit tests.
 
+| http://ci.omni.foundation/job/bitcoin-spock/[bitcoin-spock]
+| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| master
+| none (see notes)
+a| `bitcoin-spock` repo contains OmniJ library, test support, and tests. This job:
+
+* Builds `bitcoin-spock` jar
+* Builds http://ci.omni.foundation/job/bitcoin-spock/javadoc/[bitcoin-spock API documentation]
+* Does *not* trigger integration tests because those jobs are directly triggered by changes to the `bitcoin-spock` repo.
+
 |===
 
 === Integration Test Jobs
@@ -49,7 +59,6 @@ a| Runs integration tests of JSON-RPC commands against `mastercored` running in 
 
 * Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-integ-regtest.sh[test-msc-integ-regtest.sh]
 * Gradle task: `regTest`
-* This job also builds http://ci.omni.foundation/job/msc-integ-regtest/javadoc/[bitcoin-spock API documentation]
 
 | http://ci.omni.foundation/job/msc-mainnet-consensus[msc-mainnet-consensus]
 | https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
