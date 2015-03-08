@@ -9,7 +9,7 @@ class OmniwalletLoginSpec extends GebReportingSpec {
     def "can login to Omniwallet"() {
         when:
         // Load the page
-        go "https://www.omniwallet.org/"
+        to OmniwalletHomePage
 
         then:
         // make sure we actually got to the page

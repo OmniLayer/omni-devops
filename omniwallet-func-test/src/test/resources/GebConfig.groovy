@@ -35,4 +35,5 @@ environments {
 
 // To run the tests with all browsers just run “./gradlew test”
 
-baseUrl = "http://gebish.org"  // TODO: Change to Omniwallet and make sure tests use this setting
+// baseUrl used as base with all relative
+baseUrl = "https://www.omniwallet.org/"
