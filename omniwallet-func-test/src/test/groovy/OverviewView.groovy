@@ -1,9 +1,12 @@
 import geb.Page
 
 /**
- * TODO: Convert from Page to Module
+ * Overview Angular View
+ *
+ * Maybe this should be a Geb Module, but we're currently using <code>at</code> to verify
+ * it is present and that is not supported in modules.
  */
-class OverviewModule extends Page {
+class OverviewView extends Page {
     static content = {
         viewTitle { $("div[ng-controller='WalletOverviewController'] > .panel-default > .om-title").text() }
     }

@@ -21,7 +21,7 @@ class OmniwalletLoginSpec extends GebReportingSpec {
 
         then:
         // Login form is displayed
-        at LoginModule
+        at LoginView
 
         when:
         // Login to wallet
@@ -29,7 +29,7 @@ class OmniwalletLoginSpec extends GebReportingSpec {
 
         then:
         // Overview view is displayed
-        at OverviewModule
+        at OverviewView
    }
 }
 
