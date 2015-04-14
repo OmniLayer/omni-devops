@@ -31,15 +31,15 @@ a| Tip of development/integration/unstable Omni Core branch
 * Builds `mastercored`
 * Runs included C++ Boost unit tests.
 
-| http://ci.omni.foundation/job/bitcoin-spock/[bitcoin-spock]
-| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| http://ci.omni.foundation/job/OmniJ/[OmniJ]
+| https://github.com/OmniLayer/OmniJ[OmniLayer/OmniJ]
 | master
 | none (see notes)
-a| `bitcoin-spock` repo contains OmniJ library, test support, and tests. This job:
+a| `OmniJ` repo contains OmniJ library, test support, and tests. This job:
 
-* Builds `bitcoin-spock` jar
-* Builds http://ci.omni.foundation/job/bitcoin-spock/javadoc/[bitcoin-spock API documentation]
-* Does *not* trigger integration tests because those jobs are directly triggered by changes to the `bitcoin-spock` repo.
+* Builds `OmniJ` jars
+* Builds http://ci.omni.foundation/job/OmniJ/javadoc/[OmniJ API documentation]
+* Does *not* trigger integration tests because those jobs are directly triggered by changes to the `OmniJ` repo.
 
 |===
 
@@ -50,25 +50,25 @@ a| `bitcoin-spock` repo contains OmniJ library, test support, and tests. This jo
 | Job Name | Github Repo | Branch | Parameters | Notes
 
 | http://ci.omni.foundation/job/msc-integ-regtest[msc-integ-regtest]
-| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| https://github.com/OmniLayer/OmniJ[OmniLayer/OmniJ]
 | master
 a|
 
 * `JOBNAME_TO_TEST`: Job that built the `mastercored` under test (`omnicore-stable` or `omnicore-integration`)
 a| Runs integration tests of JSON-RPC commands against `mastercored` running in https://bitcoin.org/en/developer-examples#regtest-mode[RegTest Mode]
 
-* Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-integ-regtest.sh[test-msc-integ-regtest.sh]
+* Job shell script: https://github.com/OmniLayer/OmniJ/blob/master/test-msc-integ-regtest.sh[test-msc-integ-regtest.sh]
 * Gradle task: `regTest`
 
 | http://ci.omni.foundation/job/msc-mainnet-consensus[msc-mainnet-consensus]
-| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| https://github.com/OmniLayer/OmniJ[OmniLayer/OmniJ]
 | master
 a|
 
 * `JOBNAME_TO_TEST`: Job that built the `mastercored` under test (`omnicore-stable` or `omnicore-integration`)
 a| Runs consensus tests using JSON-RPC commands against `mastercored` running on *Main Net*.
 
-* Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-msc-consensus-mainnet.sh[test-msc-consensus-mainnet.sh]
+* Job shell script: https://github.com/OmniLayer/OmniJ/blob/master/test-msc-consensus-mainnet.sh[test-msc-consensus-mainnet.sh]
 * Gradle task: `consensusTest`
 
 |===
@@ -105,12 +105,12 @@ a|
 | Job Name | Github Repo | Branch | Parameters | Notes
 
 | http://ci.omni.foundation/job/btc-integ-regtest[btc-integ-regtest]
-| https://github.com/msgilligan/bitcoin-spock[msgilligan/bitcoin-spock]
+| https://github.com/OmniLayer/OmniJ[OmniLayer/OmniJ]
 | master
 |
 a|
 
-. Job shell script: https://github.com/msgilligan/bitcoin-spock/blob/master/test-btc-integ-regtest.sh[test-btc-integ-regtest.sh]
+. Job shell script: https://github.com/OmniLayer/OmniJ/blob/master/test-btc-integ-regtest.sh[test-btc-integ-regtest.sh]
 . Gradle task: `regTestBTC`
 
 |===
