@@ -1,8 +1,8 @@
 # Omniwallet, OmniEngine, and Master Core Devops
  
-**This repository is years out of date and needs a major overhaul/update before it is useful**
+**This repository is unmaintained and years out of date. It needs a major overhaul/update before it is useful again**
 
-See Issue #10
+We are looking for a new maintainer, if you think you can help, please see https://github.com/OmniLayer/omni-devops/issues/10.
  
 Deployment and management scripts for the new Master Core-based Omniwallet.
 
