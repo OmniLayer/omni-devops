@@ -1,5 +1,9 @@
 # Omniwallet, OmniEngine, and Master Core Devops
  
+**This repository is years out of date and needs a major overhaul/update before it is useful**
+
+See Issue #10
+ 
 Deployment and management scripts for the new Master Core-based Omniwallet.
 
 Omniwallet consists of 4 main components/servers. The *Vagrantfile* in this repository contains VM configurations for 3 of these components. We are currently focused on using [Amazon RDS](http://aws.amazon.com/rds/postgresql/) for the PostgreSQL server component, but PostgreSQL could be run from a Vagrant VM or any PostgreSQL server host.
